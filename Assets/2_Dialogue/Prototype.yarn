@@ -1,0 +1,184 @@
+﻿//Documentation for what it is possible to do: https://docs.yarnspinner.dev/write-yarn-scripts/scripting-fundamentals
+title: Variables
+color: red
+position: -477,-387
+---
+<<declare $frogName = "Grenouille">>
+<<declare $kidName = "?">>
+===
+
+
+title: Start
+color: yellow
+position: -200,-318
+--- //Separate header information (like the title) from the actual dialogue lines.
+{$frogName}: ...
+{$frogName}: côa
+{$kidName}: AAHHH !!!
+{$frogName}: ...?
+<<play_audio "Cry">> {$kidName}: < sanglot > 
+
+{$frogName}: ...
+{$kidName}: PAPA !!
+{$frogName}: ???
+<<play_audio "Cry">> {$kidName}: < sanglot >
+
+{$kidName}: MAMAN !!!!
+{$frogName}: ...
+{$kidName}: VOUS ÊTES OuuOuUuuUu ?
+{$frogName}: côa
+{$kidName}: Vous m’avez pas attendue !!
+{$frogName}: ...
+{$kidName}: Personne m’attend jamais de toute façon !!
+{$frogName}: côa
+<<play_audio "Cry">> {$kidName}: < sanglot >
+{$kidName}: Même Titou tout le monde l’attend !
+{$frogName}: ...
+{$kidName}: Mais moi, je vaux pas la peine c’est ça ?
+{$frogName}: ...?
+{$kidName}: < elle se lève >
+{$frogName}: ...?
+{$kidName}: JE VAUX PAS LA PEINE C’EST CA ?
+{$frogName}: ...!!
+<<play_audio "Sniff">> {$kidName}: < renifle >
+
+{$kidName}: Je sais même pas où je suiii-i-i-iiis…
+{$frogName}: côa
+<<play_audio "Sniff">> {$kidName}: < essuie son nez plein de morve >
+{$kidName}: Je suis bloquée avec des grenouilles.
+{$frogName}: ...
+{$kidName}: Et pendant ce temps, tout le monde s’amuse j’en suis sûre.
+{$frogName}: ...
+<<set $kidName to "Dani">>
+{$kidName}: Tout le monde s’amuse toujours beaucoup plus sans Dani qui râle et qui fait des bêtises c’est ça !?
+-> ...
+    <<detour Path1>>
+-> côa
+    <<detour Path2>>
+{$kidName}: J’ai pas besoin d’eux. Ils ont qu’à rester avec Titou.
+{$frogName}: !!
+{$kidName}: IL SAIT MÊME PAS COMPTER !!
+{$kidName}: IL SERT A RIEN !!
+{$frogName}: !!!
+{$kidName}: < elle se relève >
+{$kidName}: On va faire un… euh…
+{$frogName}: ??
+{$kidName}: Ah mais attends. Avant ça, il te faut un nom.
+{$kidName}: Je vais t'appeler....
+-> Grenounouille
+    <<set $frogName to "Grenounouille">>
+-> Toadule
+    <<set $frogName to "Toadule">>
+-> Shlop
+    <<set $frogName to "Shlop">>
+{$kidName}: Oui, c'est parfait pour toi, {$frogName}!
+{$frogName}: côa!!
+{$kidName}: On va jouer au jeu des questions, {$frogName}. OK ?
+-> côa
+    <<detour Questions>>
+-> ...
+    <<detour Verite_Mensonge>>
+{$kidName}: Est-ce que tu t’es déjà perdu en forêt ?
+{$frogName}: ...
+{$kidName}: < elle réfléchit >
+{$kidName}: Non mais c’est ta maison la forêt, c’est comme si je me perdais dans ma maison.
+{$frogName}: ...
+{$kidName}: Une fois Titou n’arrêtait pas de pleurer et il me cassait les oreilles. Donc je suis sortie de mon lit.
+{$frogName}: ...
+{$kidName}: J’ai été le voir pour le consoler.
+{$frogName}: ...
+{$kidName}: Et bah Papa et Maman ils sont même pas venus. Je suis restée toute seule avec lui. Et le lendemain j’étais super fatiguée.
+{$frogName}: ...!
+{$kidName}: J’ai boudé toute la journée pour leur faire comprendre que j’étais PAS CONTENTE.
+{$frogName}: ...
+{$kidName}: Je sais même pas si ils l’ont vu.
+{$kidName}: < pause >
+{$kidName}: A ma place tu y aurais été ?
+-> ...
+    {$kidName}: T'es un peu vexante, comme grenouille, {$frogName} !
+-> côa
+    {$kidName}: Je savais qu'on serait copains toi et moi, {$frogName}.
+{$frogName}: côa !
+{$kidName}: Mon frère… quand il était tout petit on parlait beaucoup. Enfin je parlais et lui il me regardait avec ses gros yeux.
+{$frogName}: ...
+{$kidName}: J’avais l’impression qu’il me comprenait. Mais aujourd’hui il fait que pleurer.
+{$frogName}: côa ?
+{$kidName}: Et moi quand je pleure personne me console.
+{$frogName}: ...
+{$kidName}: < elle s’asseoit >
+{$kidName}: Peut être qu’à mon âge on doit se consoler tout seul.
+===
+
+title: Path1
+color: blue
+position: -253,-99
+---
+{$kidName}: < elle regarde la grenouille >
+{$kidName}: Tu dis rien parce que tu trouves que j'ai raison ?
+{$frogName}: côa !
+{$kidName}: < elle regarde la grenouille >
+{$kidName}: C'est pas grave, je vais m’amuser sans eux puisque c’est comme ça.
+{$frogName}: côa !
+===
+
+title: Path2
+position: -463,-102
+color: blue
+---
+{$kidName}: < elle regarde la grenouille >
+{$kidName}: Ok bah je vais m’amuser sans eux puisque c’est comme ça.
+{$frogName}: côa !
+===
+
+title: Questions
+position: 235,-244
+---
+{$kidName}: Tu aimes bien cette mare ?
+{$frogName}: côa
+{$kidName}: C’est quoi ta couleur préférée ?
+{$frogName}: côa
+{$kidName}: Ah mais je suis bête, tu peux pas répondre à ça.
+{$frogName}: côa triste
+{$kidName}: Est-ce que tu as une famille ?
+-> côa
+    <<detour FrogFamily>>
+-> ...
+    <<detour FrogNoFamily>>
+===
+
+title: Verite_Mensonge
+position: 232,-401
+---
+{$kidName}: Ah non ? Ok bah... tu dois deviner si je te dis des vérités ou des mensonges, ok ?
+{$frogName}: côa
+{$kidName}: Je n’ai jamais été à la mer.
+-> côa
+-> ...
+{$kidName}: Ouais, ça craint hein ? On ne fait que des vacances en forêt ou à la montagne.
+{$kidName}: < soupir >
+{$frogName}: côa
+{$kidName}: Maman m’a offert un manga quand j’ai été première de la classe cette année.
+{$kidName}: < elle sourit >
+-> côa
+-> ...
+{$kidName}: < elle s’énerve >
+{$kidName}: Et bah NON ! Elle m’a rien acheté du tout.
+{$kidName}: Tss....
+{$frogName}: côa triste
+===
+
+title: FrogFamily
+position: 137,-48
+---
+{$kidName}: Est-ce que tu as un petit frère toi aussi ?
+{$kidName}: Il pleure tout le temps ?
+{$frogName}: côa
+===
+
+title: FrogNoFamily
+position: 370,-46
+---
+{$kidName}: Oh mince...
+{$kidName}: Désolée {$frogName}, je fais plein de gaffes en ce moment.
+{$frogName}: côa
+===
