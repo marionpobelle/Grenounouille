@@ -1,73 +1,442 @@
 ﻿//Documentation for what it is possible to do: https://docs.yarnspinner.dev/write-yarn-scripts/scripting-fundamentals
-title: Variables
+title: Start
+cluster: 0_Introduction
 color: red
-position: -477,-387
+position: -631,-547
 ---
 <<declare $frogName = "Grenouille">>
+<<declare $SecondFrogName = "L'autre grenouille">>
 <<declare $kidName = "?">>
+
+//variables emotion
+<<declare $emotion_colere = 0>>
+<<declare $emotion_tristesse = 0>>
+<<declare $emotion_joie = 0>>
+<<declare $current_emotion ="none">>
+
+//Jump to beat 0 
+<<jump Introduction>>
 ===
-
-
-title: Start
+title: Introduction
+cluster: 0_Introduction
 color: yellow
-position: -200,-318
---- //Separate header information (like the title) from the actual dialogue lines.
-{$frogName}: ...
-{$frogName}: côa
-{$kidName}: AAHHH !!!
-{$frogName}: ...?
-<<play_audio "Cry">> {$kidName}: < sanglot > 
+position: 825,462
+---
+-> Play Beat 0 
+-> Debug - jump to Beat 1 
+	<<jump Beat_1_About_Titou>>
+-> Debug - jump to Beat 1 After questions 
+	<<jump Beat_1_After_Questions>>
+-> Debug - jump to Beat 2 
+	<<jump Beat_2_Family_and_Fear>>
 
-{$frogName}: ...
+{$kidName}: AAHHH !!!
+{$kidName}: <i>sanglot<i>
+-> {$frogName} : ???
+-> {$frogName} : Côa. 
+
+<<play_audio "Cry">>
+{$kidName}: <i>sanglot<i>
+<<wait 0.5>> 
 {$kidName}: PAPA !!
 {$frogName}: ???
-<<play_audio "Cry">> {$kidName}: < sanglot >
+<<play_audio "Cry">> 
+{$kidName}: <i>sanglot<i>
 
 {$kidName}: MAMAN !!!!
-{$frogName}: ...
 {$kidName}: VOUS ÊTES OuuOuUuuUu ?
+{$kidName}: Vous m'avez pas attendue !!
+{$kidName}: Personne m'attend jamais de toute façon !!
 {$frogName}: côa
-{$kidName}: Vous m’avez pas attendue !!
+<<play_audio "Cry">>
+{$kidName}: <i>sanglot<i>
+{$kidName}: Même Titou tout le monde l'attend !
 {$frogName}: ...
-{$kidName}: Personne m’attend jamais de toute façon !!
-{$frogName}: côa
-<<play_audio "Cry">> {$kidName}: < sanglot >
-{$kidName}: Même Titou tout le monde l’attend !
-{$frogName}: ...
-{$kidName}: Mais moi, je vaux pas la peine c’est ça ?
+{$kidName}: Mais moi, je vaux pas la peine c'est ça ?
+{$kidName}: <i>elle se lève<i>
 {$frogName}: ...?
-{$kidName}: < elle se lève >
-{$frogName}: ...?
-{$kidName}: JE VAUX PAS LA PEINE C’EST CA ?
+<<wait 0.5>> 
+{$kidName}: JE VAUX PAS LA PEINE C'EST CA ?
 {$frogName}: ...!!
-<<play_audio "Sniff">> {$kidName}: < renifle >
-
+<<play_audio "Sniff">> 
+{$kidName}: <i>renifle<i>
+<<wait 0.2>> 
 {$kidName}: Je sais même pas où je suiii-i-i-iiis…
+<<wait 0.5>> 
 {$frogName}: côa
-<<play_audio "Sniff">> {$kidName}: < essuie son nez plein de morve >
+<<play_audio "Sniff">> 
+{$kidName}: <i>essuie son nez plein de morve<i>
+<<wait 0.8>> 
 {$kidName}: Je suis bloquée avec des grenouilles.
-{$frogName}: ...
-{$kidName}: Et pendant ce temps, tout le monde s’amuse j’en suis sûre.
-{$frogName}: ...
-<<set $kidName to "Dani">>
-{$kidName}: Tout le monde s’amuse toujours beaucoup plus sans Dani qui râle et qui fait des bêtises c’est ça !?
--> ...
-    <<detour Path1>>
--> côa
-    <<detour Path2>>
-{$kidName}: J’ai pas besoin d’eux. Ils ont qu’à rester avec Titou.
-{$frogName}: !!
-{$kidName}: IL SAIT MÊME PAS COMPTER !!
-{$kidName}: IL SERT A RIEN !!
-{$frogName}: !!!
-{$kidName}: < elle se relève >
+
+//colère 
+-> {$kidName}: Et pendant ce temps, tout le monde s'amuse j'en suis sûre. 
+    <<set $emotion_colere = $emotion_colere + 1>>
+    {$kidName}: Tout le monde s'amuse toujours beaucoup plus sans Dani qui râle et qui fait des bêtises c'est ça !?
+    <<set $kidName to "Dani">>
+    <<wait 0.5>> 
+    
+//tristesse 
+-> {$kidName}: Et pendant ce temps, tout le monde me cherche, j'en suis sûre... 
+    <<set $emotion_tristesse = $emotion_tristesse + 1>>
+	{$kidName}: J'ai entendu crier "DANII" tout à l'heure... je crois...
+	<<wait 0.5>>
+	<<set $kidName to "Dani">>
+    {$kidName}: Je veux pas passer la nuit ici avec des grenouilles qui font peur !! 
+	<<wait 0.5>> 
+
+{$frogName}: Côa...
+<<play_audio "Sniff">> 
+{$kidName}: <i>renifle<i>
+//colère 
+-> {$kidName}: J'ai pas besoin d'eux. Ils ont qu'à rester avec Titou. 
+	<<set $emotion_colere = $emotion_colere + 1>>
+	{$kidName}: IL SAIT MÊME PAS COMPTER !! 
+	{$kidName}: IL SERT A RIEN !! 
+//joie 
+-> {$kidName}: Bon.. après tout, je suis une grande fille maintenant !  
+	<<set $emotion_joie = $emotion_joie + 1>>
+	{$frogName}: Côa !! 
+	{$kidName}: <i>elle sourit<i>
+		//joie 
+		-> {$kidName}: T'es trop mignonne toi. 
+			<<set $emotion_joie = $emotion_joie + 1>>
+			{$frogName}: <i>Côa timide<i>
+		//tristesse  
+		-> {$kidName}: J'aurais aimé que Maman voit cet endroit...  
+			<<set $emotion_tristesse = $emotion_tristesse + 1>>
+			{$frogName}: <i>Côa tristoune<i>
+
+<<jump Beat_1_About_Titou>>
+===			
+//fin du beat Introduction 
+title: Beat_1_About_Titou
+cluster: Beat_1
+---
+//variables 
+<<declare $Beat1_Question_Mare_Done = false>>
+<<declare $Beat1_Question_PetitFrere_Done = false>>
+<<declare $Beat1_Question_Foret_Done= false>>
+
+
+{$kidName}: Bon ! 
+{$kidName}: On va faire un truc. 
+{$frogName}: Côa !!
+{$kidName}: On va jouer au jeu des questions. 
+{$kidName}: Ah mais attends. Avant ça, il te faut un nom.
+{$kidName}: Je vais t'appeler....
+-> Grenounouille
+    <<set $frogName to "Grenounouille">>
+-> Toadule   
+    <<set $frogName to "Toadule">>
+-> Shlop
+    <<set $frogName to "Petit plouf">>
+{$kidName}: Oui, c'est parfait pour toi, {$frogName}!
+{$frogName}: côa!!
+
+<<wait 1>>
+
+-> Tu préfères les mares ou l'océan ? 
+   <<jump Beat_1_Question_Mare>>
+-> Tu as un petit frère toi aussi ? 
+    <<jump Beat_1_Question_PetitFrere>>
+-> Est-ce que tu t'es déjà perdu en forêt toi ?  
+    <<jump Beat_1_Question_Foret>>
+
+===
+title: Beat_1_Question_Mare
+cluster: Beat_1
+---
+<<set $Beat1_Question_Mare_Done = true>>
+
+{$kidName}: J'imagine que tu te plais ici si tu y restes...
+	-> {$frogName}: <i>Côa affirmatif !<i>
+		{$kidName}: C'est bien ce que je pensais. 
+	-> {$frogName}: <i>Côa negatif...<i>
+		{$kidName}: Quoi ? Mais... pourquoi tu ne vas pas bondir ailleurs ? 
+		{$kidName}: Tu as ta maison ici, peut-être...
+		
+<<wait 1>>
+
+{$kidName}: Je n'ai jamais été à la mer. 
+{$frogName}: Côa ? 
+{$kidName}: Tu dois te dire que ça craint. 
+//colère 
+-> {$kidName}: Ouais, ça craint. 
+	<<set $emotion_colere = $emotion_colere + 1>>
+	{$kidName}: On ne fait que des vacances en forêt ou à la montagne. 
+//joie 
+-> {$kidName}: Moi j'aime bien la montagne, ça me dérange pas ! 
+	<<set $emotion_joie = $emotion_joie + 1>>
+	{$kidName}: Mes copines elles se sont un peu moquées de moi. Mais j'aime bien moi. 
+
+{$kidName}: <i>petit soupir<i>
+{$kidName}: Enfin pour l'instant, c'est surtout vacances en forêt. 
+{$kidName}: Ok prochaine question ! 
+
+	<<if ($Beat1_Question_PetitFrere_Done == false)>>
+	-> 	Tu as un petit frère toi aussi ? 
+		<<jump Beat_1_Question_PetitFrere>>
+	
+	<<elseif ($Beat1_Question_Foret_Done == false)>>
+	-> Est-ce que tu t'es déjà perdu en forêt toi ?  
+		<<jump Beat_1_Question_Foret>>
+		
+	<<else>>
+		<<jump Beat_1_After_Questions>>
+	
+	<<endif>>
+
+===
+title: Beat_1_Question_PetitFrere
+cluster: Beat_1
+---
+<<set $Beat1_Question_PetitFrere_Done = true>>
+
+{$frogName}: <i>Côa negatif<i>
+{$kidName}: Oh...
+//Colère 
+-> {$kidName}: ET BEN T'AS DE LA CHANCE !!
+	<<set $emotion_colere = $emotion_colere + 1>>
+	{$kidName}: PFF.
+//tristesse
+-> {$kidName}: Tu dois te sentir un peu seule...
+	<<set $emotion_tristesse = $emotion_tristesse + 1>>
+//joie 
+-> {$kidName}: C'est pas mal aussi ! 
+	<<set $emotion_joie = $emotion_joie + 1>>
+
+{$frogName}: Côa...
+	
+<<wait 0.5>> 
+
+{$kidName}: Mon frère… quand il était tout petit on parlait beaucoup. Enfin je parlais et lui il me regardait avec des gros yeux. 
+-> <i>Côa triste... <i>
+-> <i>Côa joyeux<i>
+	<<set $emotion_joie = $emotion_joie + 1>>
+	<<jump Beat_1_Question_PetitFrere_Cut>>
+
+{$kidName}: J'avais l'impression qu'il me comprenait. Mais aujourd'hui il fait que pleurer. 
+-> <i>Côa... <i>
+-> <i>Côa joyeux et insistant<i>
+	<<set $emotion_joie = $emotion_joie + 1>>
+	<<jump Beat_1_Question_PetitFrere_Cut>>
+
+<<wait 1>> 
+
+{$kidName}: Et moi, quand je pleure, personne me console. 
+-> <i>Côa tristoune...<i>
+-> ({$frogName} saute sur place pour distraire {$kidName})
+	<<set $emotion_joie = $emotion_joie + 1>>
+	<<jump Beat_1_Question_PetitFrere_Cut>>
+
+<<wait 1>> 
+
+//Validation de l'émotion tristesse 
+<<set $emotion_tristesse = $emotion_tristesse + 3>>
+
+{$kidName}: Peut être qu'à mon âge on doit se consoler tout seul. 
+{$kidName}: ... 
+-> {$frogName}: Côa !
+-> {$frogName}: ({$frogName} se rapproche d'un air réconfortant)
+	<<set $emotion_joie = $emotion_joie + 1>>
+	<<jump Beat_1_Question_PetitFrere_Cut>>
+
+=== 
+title: Beat_1_Question_PetitFrere_Cut
+cluster: Beat_1
+---
+
+{$kidName}: Haha. T'es mignonne. 
+{$kidName}: C'est vrai, je devrais arrêter de me plaindre. J'ai de la chance. 
+{$kidName}: ...
+
+	<<if ($Beat1_Question_Foret_Done == false)>>
+	-> Est-ce que tu t'es déjà perdu en forêt toi ?  
+		<<jump Beat_1_Question_Foret>>
+	
+	<<elseif ($Beat1_Question_Mare_Done == false)>>
+	-> Tu préfères les mares ou l'océan ? 
+		<<jump Beat_1_Question_Mare>>
+		
+	<<else>>
+		<<jump Beat_1_After_Questions>>
+	
+	<<endif>>
+	
+=== 
+title: Beat_1_Question_Foret
+position: -409,25
+cluster: Beat_1
+---
+
+{$kidName}: Est-ce que tu t'es déjà perdu en forêt ? 
+{$frogName}: Côa ?
+{$kidName}: <i> elle réfléchit <i>
+{$kidName}: Non mais c'est ta maison la forêt, c'est comme si je me perdais dans ma maison. 
+
+{$kidName}: Une fois Titou n'arrêtait pas de pleurer et il me cassait les oreilles. Donc je suis sortie de mon lit. 
+-> {$kidName}: J'ai été le voir pour le consoler.
+-> {$kidName}: Je ne savais pas trop quoi faire... 
+{$kidName}: J'ai attendu longtemps. 
+{$kidName}: Et bah Papa et Maman ils sont même pas venus. Je suis restée toute seule avec lui. Et le lendemain j'étais super fatiguée. 
+//colère 
+-> {$kidName}: J'ai boudé toute la journée pour leur faire comprendre que j'étais PAS CONTENTE.
+	<<set $emotion_colere = $emotion_colere + 1>>
+	{$kidName}: Je sais même pas si ils l'ont vu. 
+//joie ou espoir  
+-> {$kidName}: C'est pas grave, je comprends. C'est moi la grande. 
+	<<set $emotion_joie = $emotion_joie + 1>>
+	{$kidName}: Maman était très fatiguée...
+
+{$kidName}: A ma place tu y aurais été ? 
+-> {$frogName}: <i>Côa negatif<i>
+	{$kidName}: Pfff! Menteuse. 
+-> {$frogName}: <i>Côa positif<i>
+	{$kidName}: Ouais, ouais... 
+
+{$kidName}: Mmh...
+
+	<<if ($Beat1_Question_Mare_Done == false)>>
+	-> Tu préfères les mares ou l'océan ? 
+		<<jump Beat_1_Question_Mare>>
+		
+	<<elseif ($Beat1_Question_PetitFrere_Done == false)>>
+	-> 	Tu as un petit frère toi aussi ? 
+		<<jump Beat_1_Question_PetitFrere>>
+		
+	<<else>>
+		<<jump Beat_1_After_Questions>>
+	
+	<<endif>>
+
+=== 
+
+title: Beat_1_After_Questions
+position: -625,245
+cluster: Beat_1
+---
+{$kidName}: Bon.
+{$kidName}: Je commence à m'ennuyer, moi.
+{$kidName}: On fait un jeu ?
+<<Wait 0.5 >>
+-> Faire un concours de saut
+-> Faire un concours de natation
+-> Jouer à celui qui mange le plus de mouches en 10 secondes
+
+{$kidName}: Dis ho ! T'as pas l'impression d'être un peu biaisé là ?
+{$frogName}: <coâ penaud>
+{$kidName}: Oui oui, c'est ça.
+    <<Wait 1>>
+{$kidName}: Sinon... sinon je peux rester allongée là et me couvrir de mousse.
+-> Et vivre toute ma vie avec les grenouilles, les champignons et les insectes.
+	<<set $emotion_joie = $emotion_joie + 1>>
+-> Et ne plus jamais bouger. 
+	<<set $emotion_tristesse = $emotion_tristesse + 1>>
+{$frogName}: coâ.
+{$kidName}: Tu sais...
+    <<Wait 0.8>>
+{$kidName}: Je crois que j'ai du mal avec l'ennui.
+{$kidName}: Hier je tournais en rond et maman ne voulait pas m'emmener au cinéma. Titou n'arrêtait pas de pleurer.
+{$kidName}: J'ai crié "C'EST PAS JUSTE !". Elle a fait son faux sourire et elle a dit :
+{$kidName}: "La vie, c'est pas toujours juste"
+{$frogName}: <i>coâ !!<i>
+-> J'avais envie de hurler.
+	<<set $emotion_tristesse = $emotion_tristesse + 1>>
+-> Je comprends... C'est moi la grande. 
+	<<set $emotion_joie = $emotion_joie + 1>>
+
+    <<Wait 1>>
+
+-> {$frogName}: <se rapprocher de Dani>
+	{$kidName}: T'es mimi. <elle sourit>
+	<<set $emotion_joie = $emotion_joie + 1>>
+-> {$frogName}: <ne rien faire>
+	{$kidName}: <soupir>
+	<<set $emotion_tristesse = $emotion_tristesse + 1>>
+
+   <<Wait 1>>
+   <<jump Beat_2_Family_and_Fear>>
+
+===
+title: Beat_2_Family_and_Fear
+position: -625,245
+cluster: Beat_2
+---
+//Une deuxième grenouille arrive 
+{$frogName}: <une deuxième grenouille arrive>
+{$frogName}: Côa !!! 
+{$kidName}: Hé ! 
+{$SecondFrogName}: Côa Côa !! 
+{$kidName}: Ha ha ! Tu t'es trouvé une copine. 
+{$kidName}: Ou une petite soeur ? 
+
+{$SecondFrogName}: Côa
+{$frogName}: Côa.
+{$SecondFrogName}: Côa Côa !!
+{$frogName}: Côa ??
+{$SecondFrogName}: Côa Côa !!!
+
+//<<Wait 0.5>>
+
+{$kidName}: N'hésitez pas à me dire si je dérange... 
+{$SecondFrogName}: Côa !!!!
+{$kidName}: Ha ha...
+{$kidName}: Je me demande...
+{$kidName}: Je me demande si c'est pareil chez les grenouilles. 
+{$kidName}: Quand ta petite soeur est arrivée... 
+{$kidName}: Qu'est-ce que tu as ressenti ? 
+-> Est-ce que tu as eu... peur... peut-être ? 
+	<<jump Beat_2_Sadness>>
+	<<set $emotion_tristesse = $emotion_tristesse + 1>>
+-> Est-ce que tu as pleuré de joie ? 
+	<<jump Beat_2_Joy>>
+	<<set $emotion_joie = $emotion_joie + 1>>
+-> Est-ce que d'un coup tout te semblait très injuste ? 
+	<<jump Beat_2_Anger>>
+	<<set $emotion_colere = $emotion_colere + 1>>
+
+===
+title: Beat_2_Sadness
+position: -625,245
+cluster: Beat_2
+---
+// you chose sadness 
+{$kidName}: Ha ha...
+
+===
+title: Beat_2_Joy
+position: -625,245
+cluster: Beat_2
+---
+// you chose joy 
+{$kidName}: Oui...
+
+=== 
+
+title: Beat_2_Anger
+position: -625,245
+cluster: Beat_2
+---
+//you chose anger
+{$kidName}: ...
+
+
+
+===
+title: OBSOLETE
+cluster: OBSOLETE
+color: purple
+position: -192,-215
+--- //Separate header information (like the title) from the actual dialogue lines.
+
 {$kidName}: On va faire un… euh…
 {$frogName}: ??
 {$kidName}: Ah mais attends. Avant ça, il te faut un nom.
 {$kidName}: Je vais t'appeler....
 -> Grenounouille
     <<set $frogName to "Grenounouille">>
--> Toadule
+-> Toadule   
     <<set $frogName to "Toadule">>
 -> Shlop
     <<set $frogName to "Shlop">>
@@ -78,21 +447,21 @@ position: -200,-318
     <<detour Questions>>
 -> ...
     <<detour Verite_Mensonge>>
-{$kidName}: Est-ce que tu t’es déjà perdu en forêt ?
+{$kidName}: Est-ce que tu t'es déjà perdu en forêt ?
 {$frogName}: ...
-{$kidName}: < elle réfléchit >
-{$kidName}: Non mais c’est ta maison la forêt, c’est comme si je me perdais dans ma maison.
+{$kidName}: (elle réfléchit)
+{$kidName}: Non mais c'est ta maison la forêt, c'est comme si je me perdais dans ma maison.
 {$frogName}: ...
-{$kidName}: Une fois Titou n’arrêtait pas de pleurer et il me cassait les oreilles. Donc je suis sortie de mon lit.
+{$kidName}: Une fois Titou n'arrêtait pas de pleurer et il me cassait les oreilles. Donc je suis sortie de mon lit.
 {$frogName}: ...
-{$kidName}: J’ai été le voir pour le consoler.
+{$kidName}: J'ai été le voir pour le consoler.
 {$frogName}: ...
-{$kidName}: Et bah Papa et Maman ils sont même pas venus. Je suis restée toute seule avec lui. Et le lendemain j’étais super fatiguée.
+{$kidName}: Et bah Papa et Maman ils sont même pas venus. Je suis restée toute seule avec lui. Et le lendemain j'étais super fatiguée.
 {$frogName}: ...!
-{$kidName}: J’ai boudé toute la journée pour leur faire comprendre que j’étais PAS CONTENTE.
+{$kidName}: J'ai boudé toute la journée pour leur faire comprendre que j'étais PAS CONTENTE.
 {$frogName}: ...
-{$kidName}: Je sais même pas si ils l’ont vu.
-{$kidName}: < pause >
+{$kidName}: Je sais même pas si ils l'ont vu.
+
 {$kidName}: A ma place tu y aurais été ?
 -> ...
     {$kidName}: T'es un peu vexante, comme grenouille, {$frogName} !
@@ -101,41 +470,19 @@ position: -200,-318
 {$frogName}: côa !
 {$kidName}: Mon frère… quand il était tout petit on parlait beaucoup. Enfin je parlais et lui il me regardait avec ses gros yeux.
 {$frogName}: ...
-{$kidName}: J’avais l’impression qu’il me comprenait. Mais aujourd’hui il fait que pleurer.
+{$kidName}: J'avais l'impression qu'il me comprenait. Mais aujourd'hui il fait que pleurer.
 {$frogName}: côa ?
 {$kidName}: Et moi quand je pleure personne me console.
 {$frogName}: ...
-{$kidName}: < elle s’asseoit >
-{$kidName}: Peut être qu’à mon âge on doit se consoler tout seul.
+{$kidName}: (elle s'asseoit)
+{$kidName}: Peut être qu'à mon âge on doit se consoler tout seul.
 ===
-
-title: Path1
-color: blue
-position: -253,-99
----
-{$kidName}: < elle regarde la grenouille >
-{$kidName}: Tu dis rien parce que tu trouves que j'ai raison ?
-{$frogName}: côa !
-{$kidName}: < elle regarde la grenouille >
-{$kidName}: C'est pas grave, je vais m’amuser sans eux puisque c’est comme ça.
-{$frogName}: côa !
-===
-
-title: Path2
-position: -463,-102
-color: blue
----
-{$kidName}: < elle regarde la grenouille >
-{$kidName}: Ok bah je vais m’amuser sans eux puisque c’est comme ça.
-{$frogName}: côa !
-===
-
 title: Questions
-position: 235,-244
+cluster: OBSOLETE
 ---
 {$kidName}: Tu aimes bien cette mare ?
 {$frogName}: côa
-{$kidName}: C’est quoi ta couleur préférée ?
+{$kidName}: C'est quoi ta couleur préférée ?
 {$frogName}: côa
 {$kidName}: Ah mais je suis bête, tu peux pas répondre à ça.
 {$frogName}: côa triste
@@ -147,28 +494,27 @@ position: 235,-244
 ===
 
 title: Verite_Mensonge
-position: 232,-401
+cluster: OBSOLETE
+position: 474,-585
 ---
 {$kidName}: Ah non ? Ok bah... tu dois deviner si je te dis des vérités ou des mensonges, ok ?
 {$frogName}: côa
-{$kidName}: Je n’ai jamais été à la mer.
+{$kidName}: Je n'ai jamais été à la mer.
 -> côa
 -> ...
 {$kidName}: Ouais, ça craint hein ? On ne fait que des vacances en forêt ou à la montagne.
-{$kidName}: < soupir >
 {$frogName}: côa
-{$kidName}: Maman m’a offert un manga quand j’ai été première de la classe cette année.
-{$kidName}: < elle sourit >
+{$kidName}: Maman m'a offert un manga quand j'ai été première de la classe cette année.
 -> côa
 -> ...
-{$kidName}: < elle s’énerve >
-{$kidName}: Et bah NON ! Elle m’a rien acheté du tout.
+{$kidName}: Et bah NON ! Elle m'a rien acheté du tout.
 {$kidName}: Tss....
 {$frogName}: côa triste
 ===
 
 title: FrogFamily
-position: 137,-48
+cluster: OBSOLETE
+position: -75,-630
 ---
 {$kidName}: Est-ce que tu as un petit frère toi aussi ?
 {$kidName}: Il pleure tout le temps ?
@@ -176,7 +522,8 @@ position: 137,-48
 ===
 
 title: FrogNoFamily
-position: 370,-46
+cluster: OBSOLETE
+position: 475,-390
 ---
 {$kidName}: Oh mince...
 {$kidName}: Désolée {$frogName}, je fais plein de gaffes en ce moment.
